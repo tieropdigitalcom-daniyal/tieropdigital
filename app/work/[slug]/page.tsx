@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { projects } from "@/lib/content";
 import { Arrow } from "@/components/icons";
 type Props = { params: Promise<{ slug: string }> };
+export const dynamicParams = false;
+export function generateStaticParams() { return projects.map(project => ({ slug: project.slug })); }
 export async function generateMetadata({ params }: Props): Promise<Metadata> { const { slug } = await params; const p = projects.find(p => p.slug === slug); return { title: p?.name ?? "Project", description: p?.overview ?? "Explore a TIEROP DIGITAL portfolio project.", alternates: { canonical: `/work/${slug}` } }; }
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params; const index = projects.findIndex(p => p.slug === slug); const project = projects[index]; if (!project) notFound();

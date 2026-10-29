@@ -55,7 +55,7 @@ function fixture(options = {}) {
     const module = { exports: {} }; cache.set(file, module);
     const compiled = ts.transpileModule(readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
     const localRequire = id => {
-      if (id === 'cloudflare:workers') return { env };
+      if (id === '@/lib/runtime-env') return { env };
       if (id === 'next/server') return { NextResponse };
       if (id.endsWith('inquiry-schema')) return { inquirySchema };
       if (id === '@/lib/security' || id === './security') return security;
@@ -154,7 +154,7 @@ test('timeout and missing provider receipt never claim acceptance', async () => 
   }
 });
 
-test('limits one visitor IP to five attempts per hour even with fresh form cookies', async () => {
+test('limits one sender to five attempts per hour even with fresh form cookies', async () => {
   const f = fixture(); const { POST } = f.load('app/api/inquiry/route.ts');
   for (let i = 0; i < 6; i++) {
     const token = String(i).repeat(43);
@@ -162,6 +162,24 @@ test('limits one visitor IP to five attempts per hour even with fresh form cooki
     assert.equal(res.status, i < 5 ? 200 : 429);
   }
   assert.equal(f.sent.length, 5);
+});
+
+test('the site-wide limit also bounds attempts with different sender addresses', async () => {
+  const f = fixture(); const { POST } = f.load('app/api/inquiry/route.ts');
+  for (let i = 0; i < 51; i++) {
+    const requestId = `123e4567-e89b-42d3-a456-${String(i).padStart(12, '0')}`;
+    const res = await POST(f.request({ ...valid, email: `visitor${i}@example.com`, requestId }));
+    assert.equal(res.status, i < 50 ? 200 : 429);
+  }
+  assert.equal(f.sent.length, 50);
+});
+
+test('HTTPS proxy form setup uses the secure cookie prefix', async () => {
+  const f = fixture();
+  const response = await f.load('app/api/inquiry/route.ts').GET(new Request('http://localhost:3000/api/inquiry', {
+    headers: { host: 'studio.example', 'x-forwarded-proto': 'https' },
+  }));
+  assert.match(response.headers.get('set-cookie'), /__Host-td_csrf=.*; Secure/);
 });
 
 async function signedWebhook(f, body, timestamp = String(Math.floor(Date.now() / 1000))) {

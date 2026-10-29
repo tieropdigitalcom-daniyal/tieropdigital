@@ -1,4 +1,4 @@
-export const SITE_URL = "https://tierop-digital.creamheron4097.chatgpt.site";
+export const SITE_URL = "https://tieropdigital.com";
 export const EMAIL = "tieropdigital.com@gmail.com";
 export const INSTAGRAM_URL = "https://www.instagram.com/tieropdigital/";
 export type Project = { slug: string; name: string; label: string; url: string; image?: string; color: string; overview?: string; };

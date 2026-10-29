@@ -1,6 +1,17 @@
+// Next.js may see an internal HTTP URL behind Hostinger's HTTPS proxy.
+// Browsers control Host; do not accept an arbitrary X-Forwarded-Host value.
+export function requestOrigin(request: Request) {
+  const url = new URL(request.url);
+  const host = request.headers.get("host");
+  if (!host || /[\s,/@\\?#]/.test(host)) return url.origin;
+  const forwardedProtocol = request.headers.get("x-forwarded-proto")?.split(",")[0].trim();
+  const protocol = forwardedProtocol === "https" || forwardedProtocol === "http"
+    ? `${forwardedProtocol}:` : url.protocol;
+  try { return new URL(`${protocol}//${host}`).origin; } catch { return url.origin; }
+}
 export function sameOrigin(request: Request) {
   const origin = request.headers.get("origin");
-  return origin === new URL(request.url).origin && request.headers.get("sec-fetch-site") !== "cross-site";
+  return origin === requestOrigin(request) && request.headers.get("sec-fetch-site") !== "cross-site";
 }
 export function equalTokens(a: string, b: string) {
   if (a.length !== b.length || a.length < 24 || a.length > 128) return false;

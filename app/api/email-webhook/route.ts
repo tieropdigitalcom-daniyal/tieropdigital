@@ -1,4 +1,6 @@
-import { env } from "cloudflare:workers";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+import { env } from "@/lib/runtime-env";
 import { NextResponse } from "next/server";
 import { configuration } from "@/lib/inquiry-server";
 import { readLimitedBody } from "@/lib/security";

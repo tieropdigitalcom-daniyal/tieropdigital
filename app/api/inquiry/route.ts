@@ -1,6 +1,8 @@
-import { env } from "cloudflare:workers";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+import { env } from "@/lib/runtime-env";
 import { NextResponse } from "next/server";
-import { configuration, cookie, csrfValid, emailReady, ensureCsrf } from "@/lib/inquiry-server";
+import { configuration, csrfValid, emailReady, ensureCsrf } from "@/lib/inquiry-server";
 import { inquirySchema } from "@/lib/inquiry-schema";
 import { EMAIL } from "@/lib/content";
 import { readLimitedBody, sameOrigin, sha256 } from "@/lib/security";
@@ -24,8 +26,8 @@ export async function POST(request: Request) {
   if (!parsed.success) return respond(reply("Please check your name, country, international phone number and project details.", 400));
   const data = parsed.data;
   const c = configuration(); const database = env.DB; if (!database) return respond(reply("Online inquiries are temporarily unavailable. Please email us directly.", 503));
-  // Cloudflare supplies this header. Hash with a server secret; never store the IP.
-  const identity = request.headers.get("cf-connecting-ip") ?? cookie(request, "td_csrf");
+  // A salted sender hash keeps the limit across cookie resets without trusting proxy IP headers.
+  const identity = data.email.toLowerCase();
   const now = Math.floor(Date.now() / 1000); const userHash = await sha256(`${c.resendKey}:${identity}`);
   const payloadHash = await sha256(JSON.stringify([data.name, data.country, data.phone, data.email.toLowerCase(), data.message]));
   const accepted = () => respond(NextResponse.json({ accepted: true, status: "accepted_for_processing" }, { headers: { "Cache-Control": "no-store, private" } }));
@@ -36,10 +38,10 @@ export async function POST(request: Request) {
       if (existing.user_hash !== userHash || existing.payload_hash !== payloadHash) return respond(reply("This request reference has already been used. Refresh the page before sending changed details.", 409));
       if (existing.status === "accepted") return accepted();
       if (now - existing.last_attempt < 30) return respond(reply("Your inquiry may still be processing. Wait 30 seconds, then retry the same submission.", 409, 30));
-      const retried = await database.prepare("UPDATE inquiry_requests SET status = 'pending', attempts = attempts + 1, last_attempt = ? WHERE id = ? AND attempts < 3 AND status != 'accepted' AND last_attempt <= ? AND (SELECT COALESCE(SUM(attempts), 0) FROM inquiry_requests WHERE user_hash = ? AND created_at > ?) < 5 RETURNING id").bind(now, data.requestId, now - 30, userHash, now - 3600).first();
+      const retried = await database.prepare("UPDATE inquiry_requests SET status = 'pending', attempts = attempts + 1, last_attempt = ? WHERE id = ? AND attempts < 3 AND status != 'accepted' AND last_attempt <= ? AND (SELECT COALESCE(SUM(attempts), 0) FROM inquiry_requests WHERE user_hash = ? AND created_at > ?) < 5 AND (SELECT COALESCE(SUM(attempts), 0) FROM inquiry_requests WHERE created_at > ?) < 50 RETURNING id").bind(now, data.requestId, now - 30, userHash, now - 3600, now - 3600).first();
       if (!retried) return respond(reply("Please wait before trying again, or contact us directly by email.", 429, 3600));
     } else {
-      const inserted = await database.prepare("INSERT INTO inquiry_requests (id, user_hash, payload_hash, created_at, last_attempt, attempts, status) SELECT ?, ?, ?, ?, ?, 1, 'pending' WHERE (SELECT COALESCE(SUM(attempts), 0) FROM inquiry_requests WHERE user_hash = ? AND created_at > ?) < 5 RETURNING id").bind(data.requestId, userHash, payloadHash, now, now, userHash, now - 3600).first();
+      const inserted = await database.prepare("INSERT INTO inquiry_requests (id, user_hash, payload_hash, created_at, last_attempt, attempts, status) SELECT ?, ?, ?, ?, ?, 1, 'pending' WHERE (SELECT COALESCE(SUM(attempts), 0) FROM inquiry_requests WHERE user_hash = ? AND created_at > ?) < 5 AND (SELECT COALESCE(SUM(attempts), 0) FROM inquiry_requests WHERE created_at > ?) < 50 RETURNING id").bind(data.requestId, userHash, payloadHash, now, now, userHash, now - 3600, now - 3600).first();
       if (!inserted) return respond(reply("You’ve reached the inquiry limit. Please wait before sending another, or contact us by email.", 429, 3600));
     }
     const country = new Intl.DisplayNames(["en"], { type: "region" }).of(data.country) ?? data.country;
