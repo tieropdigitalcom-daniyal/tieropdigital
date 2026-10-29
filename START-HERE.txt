@@ -1,0 +1,57 @@
+TIEROP DIGITAL — START HERE
+==========================
+
+VIEW ONLINE
+https://tierop-digital.creamheron4097.chatgpt.site
+The existing private review site requires your ChatGPT login.
+This hosting access gate is separate from the removed website Google sign-in.
+
+RUN ON WINDOWS
+1. Install Node.js 22.13 or newer.
+2. Extract this ZIP and open the TIEROP-DIGITAL folder.
+3. Double-click START-WEBSITE.bat; the first install needs internet.
+4. Open http://localhost:5173 or the address printed in the terminal.
+5. Keep the terminal open; Ctrl+C stops the website.
+
+MANUAL WINDOWS COMMANDS
+  node scripts/prepare-local.mjs
+  npx.cmd --yes pnpm@11.25.0 install --frozen-lockfile
+  npx.cmd --yes pnpm@11.25.0 dev
+
+MAC / LINUX
+Use npx instead of npx.cmd in the same commands.
+
+LATEST UPDATE
+- Custom chrome/cyan 3D tree with real hanging project cards on Home and Work.
+- Laptop/phone arrows, numbered selection, filters, project links and keyboard input.
+- Three-second autoplay with Play/Pause. Mouse hovering over the tree does not
+  freeze it. Manual browsing pauses; hidden/offscreen scenes pause automatically.
+- Natural vertical wheel/touch scrolling; responsive tree layouts.
+- Existing opening screen, hands, services, studio, navigation and footer preserved.
+
+CONTACT FORM
+Google/Supabase sign-in has been removed. The client types their name and email.
+A small secure email backend remains for direct submission and abuse protection.
+When configured, the email shows the client name in sender display, subject and
+body, with their entered email as Reply-To. The fixed recipient is:
+  tieropdigital.com@gmail.com
+
+Direct automatic delivery still needs RESEND_API_KEY and INQUIRY_FROM_EMAIL
+(on a verified sender domain) in private runtime settings. No keys are included.
+Without them the form validates details and prepares a complete email draft.
+The client opens their email app or Gmail draft, reviews it and presses Send.
+Preparing a draft does not send an email. See SETUP.md for secure configuration.
+
+VERIFIED
+TypeScript and production build passed. All 19 automated security/email tests
+passed using mocked providers; no real email was sent. 48 responsive layouts at
+320, 390, 768, 1024, 1366 and 1440px showed no horizontal overflow. Desktop and
+mobile project controls, vertical scrolling, all project routes and the contact
+draft were checked. These are browser checks, not physical-device certification.
+
+See 3D-UPDATE.md for the full visual brief and verification scope.
+Complete editable source and launch helpers are included. Build output,
+node_modules, Git history, test QA pages, caches and private environment files
+are excluded.
+
+Exported source commit: a140c902c9f189abb81e77e71951df962e94359b

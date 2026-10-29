@@ -1,0 +1,10 @@
+import { DepthArt } from "@/components/depth-art";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { Arrow } from "@/components/icons";
+import { ContactForm } from "@/components/contact-form";
+import { EMAIL, INSTAGRAM_URL } from "@/lib/content";
+export const metadata: Metadata = { title: "Start a Project", description: "Tell TIEROP DIGITAL about your next website or digital project. Start a conversation by email or the project inquiry experience.", alternates: { canonical: "/contact" } };
+export default function ContactPage() {
+  return <main id="main"><div className="page-intro contact-intro shell"><DepthArt priority /><span className="eyebrow">GOOD THINGS START WITH A CONVERSATION</span><h1>What’s on<br /><span className="muted">your mind?</span></h1></div><div className="contact-layout shell depth-section"><DepthArt variant="bloom" className="depth-art-contact" /><aside className="contact-aside"><span className="eyebrow">A NEW IDEA. A FRESH START.</span><p>Tell us what you’re thinking. Let’s find out what we can make together.</p><a className="contact-email" href={`mailto:${EMAIL}`}>{EMAIL}<Arrow /></a><a className="contact-social" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><span className="social-icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" /></svg></span><div><span className="eyebrow">TIEROP DIGITAL ON INSTAGRAM</span><strong>@tieropdigital</strong></div><Arrow /></a><div className="contact-steps"><div><span className="mono">01</span><p><strong>Introduce yourself</strong>Tell us who you are and how to reach you.</p></div><div><span className="mono">02</span><p><strong>Share the idea</strong>A few details about you and your project.</p></div><div><span className="mono">03</span><p><strong>Keep the conversation going</strong>We’ll review your inquiry and reply by email.</p></div></div></aside><ContactForm /></div></main>;
+}

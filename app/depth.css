@@ -1,0 +1,109 @@
+/* TIEROP spatial surfaces. No WebGL loop, fixed backgrounds or animation dependency. */
+.depth-section,.page-intro{position:relative;isolation:isolate}
+.depth-art{position:absolute;inset:0;z-index:-1;overflow:clip;pointer-events:none;user-select:none;contain:layout paint}
+.depth-art-layer{position:absolute;width:1050px;max-width:90%;right:-130px;top:50%;margin-top:-330px;transform:translate3d(0,var(--parallax-y,0px),0);opacity:.38;mask-image:linear-gradient(90deg,transparent,#000 24%,#000 90%,transparent),linear-gradient(0deg,transparent,#000 20%,#000 80%,transparent);mask-composite:intersect}
+.depth-art-layer img{width:100%;height:auto}
+.depth-art-bloom .depth-art-layer{width:560px;max-width:50%;right:auto;left:-180px;top:45%;margin-top:-200px;opacity:.14;rotate:-18deg}
+.depth-art-grid{position:absolute;inset:auto 0 0;height:240px;opacity:.12;background-image:linear-gradient(#6ae9df36 1px,transparent 1px),linear-gradient(90deg,#6ae9df36 1px,transparent 1px);background-size:64px 64px;transform:perspective(500px) rotateX(62deg) scale(1.7);transform-origin:center bottom;mask-image:radial-gradient(ellipse at center,#000,transparent 68%)}
+.page-intro .depth-art-layer{width:760px;max-width:75%;right:-145px;top:45%;margin-top:-170px;opacity:.39}
+.page-intro .depth-art-grid{opacity:.09}
+.page-intro h1,.page-intro p{position:relative}
+.page-intro h1{text-shadow:0 2px 18px #101c25b3}
+.depth-art-work .depth-art-layer{top:15%;right:-230px;opacity:.24}
+.depth-art-studio .depth-art-layer{right:-280px;top:35%;opacity:.25;rotate:-18deg}
+.depth-art-contact .depth-art-layer{left:-180px;top:62%;max-width:65%;opacity:.17}
+.portrait:not(.webgl-ready) picture{transform:perspective(1200px) translate3d(var(--portrait-x,0px),var(--portrait-y,0px),0) rotateX(var(--portrait-rx,0deg)) rotateY(var(--portrait-ry,0deg)) scale(1.045);transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.hero-orbits>span{box-shadow:inset 0 0 50px #00e5d007,0 0 40px #00e5d00a}
+
+/* Cached sculpture images form the rear plane of each card. */
+.card-art{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:clip;border-radius:inherit;opacity:.3;mask-image:linear-gradient(130deg,transparent 18%,#000 100%)}
+.card-art img{position:absolute;width:100%;max-width:none;height:100%;object-fit:cover;object-position:65% center;transform:scale(1.35);opacity:.66}
+.card-art-1 img{transform:scale(1.6) rotate(-28deg);object-position:90% center}
+.card-art-2 img{transform:scale(1.5) rotate(24deg);object-position:75% center}
+.expertise-card,.studio-value,.process-step,.project-callout,.contact-form-panel,.service-row{position:relative;isolation:isolate}
+.expertise-card,.studio-value,.process-step{border:1px solid #91cec834;border-radius:20px;background:linear-gradient(140deg,#284450e6,#142630f2);box-shadow:inset 0 1px 0 #d8fff516,0 14px 30px -20px #010b14a6;transition:border-color .3s,box-shadow .3s,transform .4s}
+.expertise-card::after,.studio-value::after,.process-step::after,.project-card-surface::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at var(--light-x,50%) var(--light-y,0%),#a7fff211,transparent 55%);opacity:.5;transition:opacity .3s;z-index:2}
+.expertise-card:hover,.studio-value:hover,.process-step:hover{border-color:#7eeedb85;box-shadow:inset 0 1px 0 #cefff52b,0 26px 40px -28px #000d1dcc}
+.expertise-card .card-art{opacity:.34}.expertise-card:hover .card-art{opacity:.46;transition:opacity .4s}
+.expertise-card h2,.expertise-card>p,.studio-value h3,.studio-value>p,.process-step h3,.process-step>p{text-shadow:0 2px 9px #10222dcc}
+.expertise-card>p,.studio-value p,.process-step p{color:#c0d2d6}
+.expertise-card-top{position:relative;padding-bottom:22px;border-bottom:1px solid #9cddd520;margin-bottom:25px}
+.service-icon{background:linear-gradient(135deg,#a2fff126,#00acbd14);box-shadow:inset 0 1px 0 #d9fff73d,3px 4px 0 #102f3d,6px 7px 16px #000f194f;border-color:#84e9d76b;transform:perspective(450px) rotateY(-9deg) rotateX(7deg);transition:transform .35s}
+.expertise-card:hover .service-icon{transform:perspective(450px) rotateY(6deg) rotateX(-4deg) translateY(-3px)}
+.service-card-link{color:#e3f6ee;border-color:#b7eddf2c}
+.tags>span{background:#132f37b8;border-color:#84c7c43b;color:#c5dddf}
+.studio-value{padding:32px 28px;min-height:285px}
+.studio-value .card-art{opacity:.2}
+.process-step{overflow:clip;min-height:245px}
+.process-step .card-art{opacity:.25}
+.process-step>.mono{position:relative;border-bottom:1px solid #8ccfcf2b;padding-bottom:16px}
+.process-step h3{margin-top:25px}
+.process-dot{background:var(--cyan);box-shadow:0 0 10px #00e5d06b}
+.service-row:before,.contact-form-panel:before,.project-callout:before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,#172d367a,#172d36c7),url('/assets/depth-sculpture-640.webp') right center/cover no-repeat;opacity:.38}
+.service-row[open]{box-shadow:inset 3px 0 0 #55ebd5,0 12px 35px -28px #00e5d060}
+.contact-form-panel:before{opacity:.22}
+.project-callout:before{background-position:70% center;opacity:.3}
+[data-tilt]{transform:perspective(1100px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-origin:center;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+[data-tilt].is-tilting{transition:transform .14s ease-out,border-color .3s,box-shadow .3s}
+.contact-form-panel:focus-within{transform:none!important}
+
+/* Framed project previews with a distinct front plane. */
+.project-card-surface{position:relative;isolation:isolate;border-radius:inherit;min-width:0;height:100%;background:linear-gradient(145deg,#294753eb,#162b36f7);overflow:clip}
+.project-card-surface>.card-art{opacity:.23}
+.project-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px 13px}
+.project-card-head>.mono{font-size:8px;color:#b6cfd3;letter-spacing:.14em}
+.project-card-type{display:flex;align-items:center;gap:8px;color:#c6d8da;font:8px/1.5 Arial,sans-serif;letter-spacing:.1em;white-space:nowrap}
+.project-card-type>i{height:4px;width:4px;background:#7bf3d6;border-radius:50%;box-shadow:0 0 8px #55e6cd4d}
+.carousel-slide .project-card{background:#172c36;overflow:visible;border-radius:20px}
+.carousel-slide .project-image{margin:0 11px;border:1px solid #b8e3e529;box-shadow:0 5px 20px -10px #000d1ca6}
+.carousel-slide .project-caption{height:121px;padding:20px 22px}
+.project-caption h3{color:#eef9f3}
+.project-category{color:#a9cbd0}
+.project-image img{background:#11232c}
+.project-image:after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 #ffffff21}
+.project-card .round-link{min-width:44px;min-height:44px;background:linear-gradient(140deg,#85ddc71c,#0c1f2d99);border-color:#9ce3d54d}
+.project-card .round-link:hover{background:var(--cyan)}
+.portfolio-collection .project-card{padding:0;overflow:visible;box-shadow:0 20px 35px -24px #000b1db3;transition:border-color .3s}
+.portfolio-collection .project-image{margin:0 11px;border:1px solid #b8e3e529}
+.portfolio-collection .project-caption{padding:22px 24px;min-height:120px}
+.project-image .image-number{padding:5px 8px;background:#0e2431bb;border:1px solid #a0ded82e;border-radius:5px;left:12px;bottom:12px}
+.carousel-autoplay-progress{height:2px;margin:0 2px 14px;background:#a4e5db15;overflow:hidden;border-radius:2px}
+.carousel-autoplay-progress>span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#55f1d7,#7bbfed);transform:scaleX(0);transform-origin:left;animation:carousel-time 3s linear infinite;animation-play-state:paused}
+.carousel-autoplay-progress[data-running=true]>span{animation-play-state:running}
+@keyframes carousel-time{to{transform:scaleX(1)}}
+
+@media(max-width:1150px){.depth-art-layer{right:-230px;max-width:100%}.studio-value{padding:27px 22px}.page-intro .depth-art-layer{max-width:85%;opacity:.28}.project-card-head{padding-inline:18px}.portfolio-collection .project-caption{padding-inline:20px}}
+@media(max-width:760px){
+ .depth-art-layer{max-width:none;width:620px;right:-280px;opacity:.22;margin-top:-210px}
+ .page-intro .depth-art-layer{width:510px;max-width:none;right:-220px;top:50%;margin-top:-120px;opacity:.28}
+ .depth-art-bloom .depth-art-layer{width:380px;max-width:none;left:-240px;opacity:.1}
+ .depth-art-work .depth-art-layer{top:16%;right:-330px}
+ .depth-art-studio .depth-art-layer{right:-340px;opacity:.17}
+ .depth-art-grid{height:150px;background-size:42px 42px;opacity:.07}
+ .depth-art-contact .depth-art-layer{left:-270px;max-width:none;opacity:.12}
+ .studio-values{gap:14px;margin-bottom:12px}
+ .studio-value{padding:27px 24px;min-height:0;border:1px solid #91cec834;border-radius:16px}
+ .studio-value:last-child{border:1px solid #91cec834}
+ .process-step{min-height:0;padding:23px 18px 27px;border-radius:16px}
+ .process-step h3{font-size:23px;margin-top:23px}
+ .project-card-head{padding:14px 15px 12px;gap:8px}
+ .project-card-head>.mono,.project-card-type{font-size:7px}
+ .carousel-slide .project-image,.portfolio-collection .project-image{margin:0 8px}
+ .carousel-slide .project-caption{height:122px;padding:19px 17px}
+ .carousel-slide .project-card{border-radius:16px}
+ .portfolio-collection .project-card{padding:0;border-radius:16px}
+ .portfolio-collection .project-caption{padding:22px 19px;min-height:112px}
+ .project-card .round-link{min-width:44px;min-height:44px}
+ .card-art{opacity:.25}.expertise-card .card-art{opacity:.3}
+ .contact-form-panel{box-shadow:inset 0 1px 0 #d7fff815,0 16px 32px -24px #00101c55}
+}
+@media(max-width:380px){.process-step{padding:22px 14px}.process-step h3{font-size:20px}.project-card-type{font-size:6px;letter-spacing:.07em}.project-card-head{padding-inline:13px}.carousel-slide .project-caption{height:130px;padding-inline:14px}}
+@media(hover:none),(pointer:coarse){[data-tilt]{transform:none!important}.project-card-surface::after{opacity:.35}.service-icon{transform:none}.expertise-card:hover .service-icon{transform:none}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ .depth-art-layer{transform:none!important}
+ [data-tilt],.portrait:not(.webgl-ready) picture{transform:none!important;transition:none!important}
+ .fx-reveal,.motion-ready .fx-reveal.is-visible,.motion-ready [data-tilt].fx-reveal.is-visible,.carousel-autoplay-progress>span{animation:none!important;opacity:1;translate:none}
+ .service-icon,.expertise-card:hover .service-icon{transform:none;transition:none}
+ .carousel-slide .project-card,.carousel-slide.is-before .project-card,.carousel-slide.is-after .project-card{transform:none;opacity:1}
+}

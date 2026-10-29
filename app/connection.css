@@ -1,0 +1,85 @@
+/* A cinematic greeting after the opening screen. Only transforms and opacity animate. */
+.connection-scene{position:relative;isolation:isolate;overflow:clip;height:clamp(430px,42vw,680px);background:#0a121a;border-block:1px solid #89d8de20;contain:layout paint}
+.connection-atmosphere{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 48%,#092f414d,transparent 60%),radial-gradient(ellipse at 11% 42%,#49408918,transparent 45%),linear-gradient(0deg,#0a121a,#101b24 50%,#0a121a)}
+.connection-atmosphere:after{content:'';position:absolute;inset:0;opacity:.3;background-image:radial-gradient(circle,#a6e4ed 0 .6px,transparent 1px),radial-gradient(circle,#8bc3df 0 .5px,transparent 1px);background-size:93px 83px,137px 117px;background-position:13px 21px,47px 63px;mask-image:radial-gradient(ellipse at center,#000,transparent 74%)}
+.connection-top,.connection-bottom{position:absolute;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:3;pointer-events:none}
+.connection-top{padding-top:34px}.connection-top>.eyebrow{font-size:10px;color:#b7d3dc;letter-spacing:.19em}.connection-top>.mono{color:#6e909f;font-size:9px}
+.connection-bottom{inset:auto 0 24px;min-height:44px}.connection-bottom>.eyebrow{font-size:9px;color:#8fabb9}.connection-bottom a,.connection-bottom button{pointer-events:auto}
+.connection-stage{position:absolute;inset:76px 0 64px;max-width:1900px;margin:auto;perspective:1200px;pointer-events:none}
+.connection-aura{position:absolute;left:28%;right:28%;top:7%;bottom:7%;border-radius:50%;background:radial-gradient(ellipse,#00c9ee13,transparent 70%)}
+.connection-hand{position:absolute;top:3%;left:-9%;width:65%;opacity:0}
+.connection-hand img{width:100%;height:auto;max-width:none;transform-origin:80% 65%}
+.connection-hand-right{left:auto;right:-9%;transform:scaleX(-1)}
+.connection-hand-right img{filter:hue-rotate(28deg)}
+.connection-joined{position:absolute;inset:-6% 0 -4%;display:block;transform-origin:50% 58%;opacity:1}
+.connection-joined img{height:100%;width:100%;object-fit:cover;max-width:none}
+.connection-impact{position:absolute;width:230px;height:230px;border:1px solid #8cefff77;left:50%;top:49%;margin:-115px 0 0 -115px;border-radius:50%;box-shadow:0 0 55px #00e5d020,inset 0 0 40px #00e5d00a;opacity:0}
+.connection-next{display:grid;place-items:center;width:44px;height:44px;border:1px solid #8bccdd38;border-radius:50%;color:#72e9e0;font-size:21px;transition:border-color .2s,background .2s}
+.connection-next:hover{background:#63eddb19;border-color:#8be9e0}
+.connection-replay{display:inline-flex;align-items:center;gap:9px;min-height:44px;color:#bdd6df;font-size:12px;margin-left:auto;padding:0 12px;border-radius:24px;border:1px solid #8bccdd26}
+.connection-replay>span{font-size:20px;color:#69eadb}.connection-replay:disabled{opacity:.35;cursor:default}.connection-replay:hover:not(:disabled){border-color:#7de7da77;color:#efffff}
+.connection-scene[data-phase=ready] .connection-joined{opacity:0}
+.connection-scene[data-phase=playing] .connection-hand{opacity:1}
+.connection-scene[data-phase=playing] .connection-hand img{animation:connection-approach 2.1s cubic-bezier(.22,.72,.18,1) both}
+.connection-scene[data-phase=playing] .connection-joined{animation:connection-lock 2.1s ease-out both}
+.connection-scene[data-phase=playing] .connection-impact{animation:connection-contact 2.1s ease-out both}
+.connection-scene[data-paused=true] .connection-stage *{animation-play-state:paused!important}
+@keyframes connection-approach{0%{opacity:0;transform:translate3d(-95%,18px,0) rotate(-8deg) scale(.94)}12%{opacity:1}36%{opacity:1;transform:translate3d(-7%,0,0) rotate(-1deg) scale(1)}46%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1.015)}54%{opacity:0;transform:translate3d(0,0,0) scale(1)}100%{opacity:0;transform:translate3d(0,0,0) scale(1)}}
+@keyframes connection-lock{0%,40%{opacity:0;transform:translate3d(0,5px,0) scale(.96)}49%{opacity:1;transform:translate3d(0,0,0) scale(1.035)}59%{opacity:1;transform:translate3d(0,3px,0) rotate(-.6deg) scale(.994)}73%{transform:translate3d(0,-1px,0) rotate(.25deg) scale(1.006)}100%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1)}}
+@keyframes connection-contact{0%,41%{opacity:0;transform:scale(.55)}49%{opacity:.6;transform:scale(.8)}82%,100%{opacity:0;transform:scale(1.75)}}
+
+/* A fresh glass cube replaces the earlier ribbon on the lower cards. */
+.card-art{opacity:.42;mask-image:linear-gradient(110deg,transparent 12%,#000 78%)}
+.card-art img{width:74%;height:100%;right:-13%;bottom:-13%;object-fit:contain;object-position:center;transform:rotate(-13deg);opacity:.75}
+.card-art-1 img{transform:rotate(17deg);right:-19%;bottom:-9%}
+.card-art-2 img{transform:rotate(-26deg);right:-16%;bottom:-18%}
+.expertise-card .card-art{opacity:.44}.expertise-card:hover .card-art{opacity:.55}
+.process-step .card-art,.studio-value .card-art{opacity:.3}.project-card-surface>.card-art{opacity:.3}
+.service-row:before,.contact-form-panel:before,.project-callout:before{background:linear-gradient(90deg,#172d36a6,#172d3640),url('/assets/card-cube-480.webp') right -48px center/280px auto no-repeat;opacity:.26}
+
+/* The reference uses readable navigation and controlled, image-led type. */
+.desktop-nav>a{font-size:clamp(15px,1.25vw,24px);letter-spacing:-.025em;padding-block:23px}
+.desktop-nav{gap:clamp(24px,3.3vw,62px)}
+.header-cta{font-size:clamp(15px,1.15vw,21px);padding:14px 25px;gap:35px}
+.hero h1{font-size:clamp(90px,9.2vw,150px);line-height:.91;letter-spacing:-.065em}
+.hero-description p{font-size:18px;line-height:1.65}
+.button{font-size:15px}.text-link{font-size:15px}
+.page-intro h1{font-size:clamp(56px,7.2vw,108px);line-height:1.03}
+.expertise-page .page-intro h1{font-size:clamp(52px,6.2vw,94px);line-height:1.07}
+.section h2{font-size:clamp(42px,5.2vw,76px);line-height:1.07}
+.service-catalog .expertise-card h2{font-size:30px;line-height:1.17}
+.project-callout h2{font-size:40px}.project-summary h2{font-size:36px}
+.expertise-card>p,.studio-value p{font-size:15px;line-height:1.8}
+.service-card-link{font-size:13px}.project-caption h3{font-size:27px}
+.carousel-slide .project-caption{height:144px}.carousel-slide .project-caption h3{font-size:26px;line-height:1.18}
+.portfolio-collection .project-caption h3{font-size:27px}
+.project-card-head>.mono,.project-card-type{font-size:9px}.carousel-slide .project-category,.project-category{font-size:9px;line-height:1.5}
+.tags>span{font-size:10px}.footer-grid a:not(.brand){font-size:14px}
+@media(min-width:761px) and (max-width:1150px){.desktop-nav{gap:22px}.desktop-nav>a{font-size:14px}.header-cta{font-size:14px;padding:13px 20px;gap:23px}.connection-scene{height:460px}.service-catalog .expertise-card h2{font-size:28px}}
+@media(max-width:760px){
+ .connection-scene{height:390px}
+ .connection-top{padding-top:24px;justify-content:center}.connection-top>.eyebrow{font-size:8px;letter-spacing:.12em;text-align:center}.connection-top>.mono{display:none}
+ .connection-stage{inset:66px -18% 57px}
+ .connection-hand{width:69%;left:-11%;top:17%}.connection-hand-right{left:auto;right:-11%}
+ .connection-joined{inset:-3% -19% -7%}.connection-joined img{object-fit:contain}
+ .connection-bottom{bottom:18px;gap:9px}.connection-bottom>.eyebrow{font-size:7px;max-width:135px;line-height:1.7}.connection-replay{font-size:10px;gap:6px;padding-inline:10px}.connection-next{flex-shrink:0}
+ .connection-impact{width:145px;height:145px;margin:-72px 0 0 -72px;top:51%}
+ .header-cta{font-size:12px;padding:12px 16px;gap:15px}
+ .hero h1{font-size:clamp(44px,14.2vw,94px);line-height:.96}
+ .hero-description p{font-size:16px;line-height:1.65}
+ .button,.text-link{font-size:13px}
+ .page-intro h1{font-size:clamp(46px,10.5vw,76px);line-height:1.07}
+ .expertise-page .page-intro h1{font-size:clamp(39px,8.1vw,61px)}
+ .section h2{font-size:clamp(36px,9.6vw,62px);line-height:1.1}
+ .service-catalog .expertise-card h2{font-size:28px}
+ .expertise-card>p,.studio-value p{font-size:14px}
+ .project-callout h2{font-size:32px}.project-summary h2{font-size:31px}
+ .carousel-slide .project-caption{height:146px}.carousel-slide .project-caption h3{font-size:22px;line-height:1.2}
+ .carousel-slide .project-category,.project-category{font-size:8px;letter-spacing:.1em}
+ .project-card-head>.mono,.project-card-type{font-size:8px}
+ .portfolio-collection .project-caption h3{font-size:25px}
+ .tags>span{font-size:9px}.footer-grid a:not(.brand){font-size:13px}
+ .card-art img{width:70%;right:-12%}
+}
+@media(max-width:380px){.expertise-page .page-intro h1{font-size:8.35vw}.connection-scene{height:350px}.connection-bottom>.eyebrow{max-width:112px;font-size:6.5px}.connection-top>.eyebrow{font-size:7px}.connection-replay{padding-inline:8px}.carousel-slide .project-caption{height:153px}.carousel-slide .project-caption h3{font-size:20px}.project-card-head>.mono,.project-card-type{font-size:7px}.header-cta{font-size:11px}.hero-description p{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.connection-scene .connection-stage *{animation:none!important}.connection-hand,.connection-impact{display:none}.connection-scene[data-phase=ready] .connection-joined{opacity:1}.connection-joined{transform:none!important}.connection-replay{display:none}}
