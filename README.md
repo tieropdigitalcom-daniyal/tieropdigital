@@ -32,7 +32,7 @@ The production server uses port 3000. Production builds use webpack, matching th
 - `lib/service-routes.ts`: the original homepage links mapped to full service pages.
 - `app/services/[slug]`: statically generated service pages.
 - `app/blog` and `app/blog/[slug]`: insights collection and articles.
-- `app/team`: leadership page; the team also appears on the homepage.
+- `app/team`: leadership page, reached through header and footer links.
 - `app/expansion.css`: new layouts and focused header/flower refinements.
 - `public/assets/team`: optimized transparent portraits on a shared CSS backdrop.
 

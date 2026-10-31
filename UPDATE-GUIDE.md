@@ -4,7 +4,7 @@
 
 - Ten complete service pages: websites/Webflow, web applications/MERN/Supabase, Shopify, AI automation, chatbots, LLM/RAG, ChatGPT/Gemini access, graphic design, video and SEO/growth.
 - Ten original English articles, an insights collection and connected service/article links.
-- A team page and homepage team section for M Qasim Hassan, Daniyal and Mudassir, with the requested roles, English introductions and business email links.
+- A dedicated team page, linked from the menu and footer, for M Qasim Hassan, Daniyal and Mudassir, with the requested roles, English introductions and business email links.
 - Three transparent portrait cutouts on the same dark studio backdrop.
 - Removal of the illuminated header rule and unused image area above the logo.
 - Responsive WebP exports of the existing flower artwork and earlier idle loading of the inquiry form to reduce work during the services-to-flower transition.

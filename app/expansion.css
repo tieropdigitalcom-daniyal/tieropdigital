@@ -144,9 +144,11 @@
 .article-cta>.eyebrow { font-size:8px; color:#6fd8cb; }
 .article-cta h2 { font-size:35px; margin:22px 0; }
 
-/* Remove the illuminated header rule and unused pixels above the logo. */
+/* Frame the original logo inside an SVG viewport, with no negative image offsets. */
 .header-inner:after { background:var(--line); }
-.brand img { clip-path:inset(24% 16% 22%); filter:contrast(1.35); }
+.brand svg { display:block; width:100%; height:100%; overflow:hidden; filter:contrast(1.35); mix-blend-mode:lighten; }
+/* An inactive keyboard skip link must never leave a pixel at the viewport edge. */
+.skip-link:not(:focus) { width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 .site-header.scrolled { backdrop-filter:none; }
 /* Stable flower geometry and a decoded, smaller render avoid entry-time repaint spikes. */
 .bloom-art { contain:strict; }
