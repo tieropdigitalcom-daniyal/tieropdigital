@@ -17,7 +17,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const reply = (error: string, status: number, retry?: number) => NextResponse.json({ error }, { status, headers: { "Cache-Control": "no-store, private", ...(retry ? { "Retry-After": String(retry) } : {}) } });
   if (!sameOrigin(request)) return reply("This request could not be verified. Please use the website form.", 403);
-  if (!emailReady()) return reply("Online inquiries are not available yet. Please email tieropdigital.com@gmail.com.", 503);
+  if (!emailReady()) return reply(`Online inquiries are not available yet. Please email ${EMAIL}.`, 503);
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply("Please submit the project inquiry form.", 415);
   const respond = (response: Response) => response;
   if (!csrfValid(request)) return respond(reply("This form session could not be verified. Refresh the page and try again.", 403));

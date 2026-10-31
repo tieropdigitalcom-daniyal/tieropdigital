@@ -31,6 +31,7 @@ export function ConnectionScene() {
     const preference = () => {
       allowed.current = !reduced.matches && !connection?.saveData;
       setCanReplay(allowed.current);
+      if (allowed.current && !started.current) { setPhase("ready"); if (visible) void play(); }
       if (!allowed.current) { setPhase("settled"); started.current = true; }
     };
     preference();

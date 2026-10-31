@@ -3,11 +3,12 @@ import "./globals.css";
 import "./depth.css";
 import "./connection.css";
 import "./editorial.css";
-import "./project-tree.css";
+import "./portfolio.css";
+import "./refinements.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Effects } from "@/components/effects";
-import { SITE_URL } from "@/lib/content";
+import { EMAIL, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -28,8 +29,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head><link rel="preload" href="/assets/fonts/sans-regular.woff" as="font" type="font/woff" crossOrigin="anonymous" /></head>
-      <body id="top"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "TIEROP DIGITAL", url: SITE_URL, email: "tieropdigital.com@gmail.com", logo: `${SITE_URL}/assets/tierop-logo-384.webp`, sameAs: ["https://www.instagram.com/tieropdigital/"] }) }} /><Header />{children}<Footer /><Effects /></body>
+      <head><link rel="preload" href="/assets/fonts/sans-regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
+      <body id="top"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "TIEROP DIGITAL", url: SITE_URL, email: EMAIL, telephone: "+923127204408", logo: `${SITE_URL}/assets/tierop-logo-384.webp`, sameAs: ["https://www.instagram.com/tieropdigital/"] }) }} /><Header />{children}<Footer /><Effects /></body>
     </html>
   );
 }

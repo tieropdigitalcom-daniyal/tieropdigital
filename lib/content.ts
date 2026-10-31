@@ -1,5 +1,8 @@
 export const SITE_URL = "https://tieropdigital.com";
-export const EMAIL = "tieropdigital.com@gmail.com";
+export const EMAIL = "info@tieropdigital.com";
+export const ALTERNATE_EMAIL = "tieropdigital.com@gmail.com";
+export const WHATSAPP_NUMBER = "0312 7204408";
+export const WHATSAPP_URL = "https://wa.me/923127204408";
 export const INSTAGRAM_URL = "https://www.instagram.com/tieropdigital/";
 export type Project = { slug: string; name: string; label: string; url: string; image?: string; color: string; overview?: string; };
 export const projects: Project[] = [
@@ -8,9 +11,6 @@ export const projects: Project[] = [
   { slug: "solds", name: "Solds", label: "PROPERTY", url: "https://solds.co.uk/", image: "solds", color: "#f33b3c", overview: "A property website presenting a house-selling service in Scotland, with clear paths to request an offer." },
   { slug: "thoes", name: "THOES", label: "PROPERTY", url: "https://thoes.webflow.io/", image: "thoes", color: "#ff734b", overview: "A Dutch-language website introducing THOES and its property selling and insurance journeys." },
   { slug: "rahat-medical", name: "Rahat Abdul Ghaffar Medical Complex", label: "HEALTHCARE", url: "https://rahatabdulghaffarmc.com/", image: "rahat-medical", color: "#ff8b23", overview: "A hospital website introducing the medical complex, its departments and appointment information." },
-  { slug: "custom-mini-buckets", name: "Custom Mini Buckets", label: "LIVE PROJECT", url: "https://customminibuckets.com", color: "#00dbc8" },
-  { slug: "reurbano", name: "Reurbano", label: "LIVE PROJECT", url: "https://reurbano.mx/", color: "#00dbc8" },
-  { slug: "yush", name: "Yush", label: "LIVE PROJECT", url: "https://yush-new-project.webflow.io/", color: "#00dbc8" },
 ];
 export const services = [
   { number: "01", title: "Web applications", description: "From your first product to a complete business platform. Thoughtful interfaces, connected data and reliable development, built around the way you work.", tags: ["Full-stack development", "MERN stack", "Supabase web apps", "UI & UX design"] },

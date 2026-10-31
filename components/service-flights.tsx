@@ -22,14 +22,14 @@ export function ServiceFlights({ introduction = false, filters = false, detailed
         if (!reduced.matches && !connection?.saveData) {
           const direction = element.dataset.flight === "left" ? -1 : 1;
           const animation = element.animate([
-            { opacity: 0, transform: `translate3d(${direction * (innerWidth < 761 ? 58 : 110)}px,18px,0) rotate(${direction * 2}deg)` },
+            { opacity: 0, transform: `translate3d(${direction * (innerWidth < 761 ? 32 : 65)}px,18px,0) rotate(${direction * 2}deg)` },
             { opacity: 1, transform: "translate3d(0,0,0) rotate(0deg)" },
-          ], { duration: innerWidth < 761 ? 620 : 800, easing: "cubic-bezier(.16,1,.3,1)", fill: "backwards" });
+          ], { duration: innerWidth < 761 ? 480 : 620, easing: "cubic-bezier(.16,1,.3,1)", fill: "backwards" });
           animations.add(animation); animation.onfinish = () => animations.delete(animation);
         }
         observer.unobserve(element);
       }
-    }, { threshold: 0.12, rootMargin: "0px 0px -12px 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -12px 0px" });
     host.querySelectorAll("[data-flight]").forEach(element => observer.observe(element));
     const preference = () => { if (reduced.matches) { for (const animation of animations) animation.cancel(); animations.clear(); } };
     const visibility = () => { for (const animation of animations) { if (document.hidden) animation.pause(); else animation.play(); } };
