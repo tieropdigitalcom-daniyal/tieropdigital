@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { EMAIL } from "@/lib/content";
 import { Arrow } from "./icons";
-const links = [{ href: "/", label: "Home" }, { href: "/work", label: "Work" }, { href: "/services", label: "Expertise" }, { href: "/about", label: "Studio" }];
+const links = [{ href: "/", label: "Home" }, { href: "/work", label: "Work" }, { href: "/services", label: "Services" }, { href: "/about", label: "Studio" }, { href: "/team", label: "Team" }, { href: "/blog", label: "Insights" }];
 export function Logo({ footer = false }: { footer?: boolean }) {
   return <Link prefetch={false} className={`brand ${footer ? "brand-footer" : ""}`} href="/" aria-label="Tierop Digital home"><img src="/assets/tierop-logo-384.webp" width="384" height="384" alt="TIEROP DIGITAL" decoding="async" /></Link>;
 }

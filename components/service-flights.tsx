@@ -2,13 +2,17 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { serviceCatalog, serviceCategories, type ServiceCategory } from "@/lib/content";
+import { homepageServiceRoutes } from "@/lib/service-routes";
 import { Arrow } from "./icons";
 import { ServiceIcon } from "./service-icon";
 
-export function ServiceFlights({ introduction = false, filters = false, detailed = true }: { introduction?: boolean; filters?: boolean; detailed?: boolean }) {
+type FlightService = { title: string; category: ServiceCategory; icon: string; description: string; slug: string };
+const homepageServices: FlightService[] = serviceCatalog.map(service => ({ ...service, slug: homepageServiceRoutes[service.title] }));
+
+export function ServiceFlights({ introduction = false, filters = false, detailed = true, items = homepageServices }: { introduction?: boolean; filters?: boolean; detailed?: boolean; items?: FlightService[] }) {
   const root = useRef<HTMLDivElement>(null);
   const [category, setCategory] = useState<ServiceCategory>("All services");
-  const visible = serviceCatalog.filter(service => category === "All services" || service.category === category);
+  const visible = items.filter(service => category === "All services" || service.category === category);
 
   useEffect(() => {
     const host = root.current;
@@ -35,7 +39,7 @@ export function ServiceFlights({ introduction = false, filters = false, detailed
     const visibility = () => { for (const animation of animations) { if (document.hidden) animation.pause(); else animation.play(); } };
     reduced.addEventListener("change", preference); document.addEventListener("visibilitychange", visibility);
     return () => { observer.disconnect(); for (const animation of animations) animation.cancel(); reduced.removeEventListener("change", preference); document.removeEventListener("visibilitychange", visibility); };
-  }, [category]);
+  }, [category, items]);
 
   return <div ref={root} className={`service-flights ${detailed ? "is-detailed" : "is-compact"}`}>
     {introduction && <div className="service-flight-intro">
@@ -43,10 +47,10 @@ export function ServiceFlights({ introduction = false, filters = false, detailed
       <h2 data-flight="left">WHAT WE DO<span>.</span></h2>
       <p className="service-flight-statement"><span data-flight="right">We connect <span className="type-outline">design</span>, technology</span><span data-flight="left">and <span className="type-outline">creative thinking</span> to bring</span><strong data-flight="right">your next idea to life.</strong></p>
     </div>}
-    {filters && <div className="flight-filterbar"><div className="catalog-filters" role="group" aria-label="Filter services">{serviceCategories.map(item => <button key={item} className="filter-button" aria-pressed={category === item} onClick={() => setCategory(item)}>{item}{item === "All services" && <span>11</span>}</button>)}</div><span className="catalog-count mono" role="status" aria-live="polite">{String(visible.length).padStart(2, "0")} SERVICES</span></div>}
+    {filters && <div className="flight-filterbar"><div className="catalog-filters" role="group" aria-label="Filter services">{serviceCategories.map(item => <button key={item} className="filter-button" aria-pressed={category === item} onClick={() => setCategory(item)}>{item}{item === "All services" && <span>{items.length}</span>}</button>)}</div><span className="catalog-count mono" role="status" aria-live="polite">{String(visible.length).padStart(2, "0")} SERVICES</span></div>}
     <div className="service-flight-grid">{visible.map((service, index) => <article className="service-flight-entry" data-flight={index % 2 ? "right" : "left"} key={service.title}>
-      <span className="flight-service-icon"><ServiceIcon name={service.icon} /><span className="mono">{String(serviceCatalog.indexOf(service) + 1).padStart(2, "0")}</span></span>
-      <div className="flight-service-copy"><span className="eyebrow flight-service-category">{service.category}</span><h3><Link prefetch={false} href={`/contact?service=${encodeURIComponent(service.title)}`}>{service.title}<Arrow /></Link></h3>{detailed && <p>{service.description}</p>}</div>
+      <span className="flight-service-icon"><ServiceIcon name={service.icon} /><span className="mono">{String(items.indexOf(service) + 1).padStart(2, "0")}</span></span>
+      <div className="flight-service-copy"><span className="eyebrow flight-service-category">{service.category}</span><h3><Link prefetch={false} href={`/services/${service.slug}`}>{service.title}<Arrow /></Link></h3>{detailed && <p>{service.description}</p>}</div>
     </article>)}</div>
     {introduction && <div className="flight-bottom"><p>One creative partner. Every possibility.</p><Link prefetch={false} href="/services" className="text-link">Explore our expertise <Arrow /></Link></div>}
   </div>;

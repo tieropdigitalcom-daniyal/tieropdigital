@@ -22,7 +22,7 @@ export function BloomWork() {
   }, []);
   return <section ref={root} className="bloom-work" id="selected-work" data-running="false" data-paused={paused} aria-labelledby="see-work-title">
     <div className="shell bloom-topline"><span className="eyebrow">02 / SELECTED WORK</span><span className="mono">CREATIVITY, IN FULL BLOOM.</span></div>
-    <div className="bloom-art" aria-hidden="true"><img src="/assets/neon-bloom.svg" width="3840" height="2160" alt="" loading="lazy" decoding="async" /></div>
+    <div className="bloom-art" aria-hidden="true"><picture><source media="(max-width:760px)" srcSet="/assets/bloom-work-960.webp" /><img src="/assets/bloom-work-1920.webp" width="1920" height="1080" alt="" loading="eager" fetchPriority="low" decoding="async" /></picture></div>
     <div className="bloom-scrim" aria-hidden="true" />
     <div className="bloom-invitation shell"><p className="eyebrow">GOOD IDEAS DESERVE TO BE SEEN.</p><Link prefetch={false} href="/work" className="see-work-link"><h2 id="see-work-title">See <span>Work</span></h2><span className="see-work-arrow"><Arrow /></span></Link><span className="bloom-subtitle">A few possibilities, brought to life.</span></div>
     <div className="bloom-bottom shell"><span className="mono">DESIGNED TO FEEL DIFFERENT.</span><button type="button" className="bloom-motion" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume flower animation" : "Pause flower animation"}><span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>{paused ? "Play motion" : "Pause motion"}</button></div>

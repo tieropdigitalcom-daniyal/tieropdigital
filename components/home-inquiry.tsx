@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { Arrow, WhatsApp } from "./icons";
 import { EMAIL, WHATSAPP_URL, WHATSAPP_NUMBER } from "@/lib/content";
 
-const Inquiry = dynamic(() => import("./contact-form").then(module => module.ContactForm), {
+const loadInquiry = () => import("./contact-form").then(module => module.ContactForm);
+const Inquiry = dynamic(loadInquiry, {
   ssr: false,
   loading: () => <p className="home-inquiry-loading" role="status">Preparing your project inquiry…</p>,
 });
@@ -13,11 +14,13 @@ export function HomeInquiry() {
   const root = useRef<HTMLElement>(null);
   const [ready, setReady] = useState(false);
   useEffect(() => {
+    // Warm the form chunk during idle time, away from the services/flower transition.
+    const idle = "requestIdleCallback" in window ? window.requestIdleCallback(() => { void loadInquiry(); }, { timeout: 4000 }) : null;
     const observer = new IntersectionObserver(entries => {
       if (entries.some(entry => entry.isIntersecting)) { setReady(true); observer.disconnect(); }
-    }, { rootMargin: "300px" });
+    }, { rootMargin: "900px" });
     if (root.current) observer.observe(root.current);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); if (idle !== null) window.cancelIdleCallback(idle); };
   }, []);
 
   return <section ref={root} className="home-inquiry section" id="start-a-project" aria-labelledby="home-inquiry-title">

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 export function ServiceIcon({ name }: { name: string }) {
   const paths: Record<string, ReactNode> = {
+    chat: <><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5A8.5 8.5 0 0 1 10.5 3h2a8.5 8.5 0 0 1 8.5 8.5Z" /><path d="M7 9h9M7 13h6" /></>,
     app: <><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M3 9h18M8 4v5m0 4h3m-3 3h7" /></>,
     shop: <><path d="m5 8-2 5v7h18v-7l-2-5ZM7 8V6a5 5 0 0 1 10 0v2M9 20v-6h6v6M3 13h18" /></>,
     web: <><rect x="3" y="3" width="18" height="18" rx="3" /><path d="m6 9 2 8 4-8 2 8 4-8" /></>,

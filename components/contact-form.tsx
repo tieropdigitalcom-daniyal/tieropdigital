@@ -7,6 +7,7 @@ import { inquirySchema } from "@/lib/inquiry-schema";
 import { createRequestId } from "@/lib/request-id";
 import { projectEmail, type InquiryEmail } from "@/lib/inquiry-email";
 import { EMAIL, WHATSAPP_URL, serviceCatalog } from "@/lib/content";
+import { serviceNames } from "@/lib/service-names";
 import { Arrow } from "./icons";
 
 type Delivery = { emailReady: boolean; csrf?: string };
@@ -21,7 +22,7 @@ function subscribeToLocation(listener: () => void) {
 
 function requestedServiceFromLocation() {
   const requestedService = new URLSearchParams(window.location.search).get("service");
-  return serviceCatalog.find(item => item.title === requestedService)?.title ?? "";
+  return serviceCatalog.find(item => item.title === requestedService)?.title ?? serviceNames.find(name => name === requestedService) ?? "";
 }
 
 // Static HTML and the first hydration render share the same empty snapshot.
