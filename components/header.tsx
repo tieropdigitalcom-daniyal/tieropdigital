@@ -6,7 +6,7 @@ import { EMAIL } from "@/lib/content";
 import { Arrow } from "./icons";
 const links = [{ href: "/", label: "Home" }, { href: "/work", label: "Work" }, { href: "/services", label: "Services" }, { href: "/about", label: "Studio" }, { href: "/team", label: "Team" }, { href: "/blog", label: "Insights" }];
 export function Logo({ footer = false }: { footer?: boolean }) {
-  return <Link prefetch={false} className={`brand ${footer ? "brand-footer" : ""}`} href="/" aria-label="Tierop Digital home"><svg viewBox="65 90 254 210" width="254" height="210" aria-hidden="true" focusable="false"><image href="/assets/tierop-logo-384.webp" width="384" height="384" /></svg></Link>;
+  return <Link prefetch={false} className={`brand ${footer ? "brand-footer" : ""}`} href="/" aria-label="Tierop Digital home"><img src="/assets/tierop-logo-384.webp" width="384" height="384" alt="TIEROP DIGITAL" decoding="async" /></Link>;
 }
 export function Header() {
   const pathname = usePathname(); const dialog = useRef<HTMLDialogElement>(null); const [open, setOpen] = useState(false);
