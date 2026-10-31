@@ -1,1 +1,3 @@
-export default function NotFound() { return <main className="not-found shell" id="main"><span className="eyebrow">A SMALL DETOUR</span><h1>404.</h1><p>That page isn’t here. There’s plenty more to explore.</p><a href="/" className="button button-primary">Back to the homepage ↗</a></main>; }
+import Link from "next/link";
+
+export default function NotFound() { return <main className="not-found shell" id="main"><span className="eyebrow">A SMALL DETOUR</span><h1>404.</h1><p>That page isn’t here. There’s plenty more to explore.</p><Link href="/" className="button button-primary">Back to the homepage ↗</Link></main>; }

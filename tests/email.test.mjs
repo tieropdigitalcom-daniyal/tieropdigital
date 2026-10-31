@@ -52,7 +52,7 @@ function fixture(options = {}) {
   const load = file => {
     file = resolve(root, file);
     if (cache.has(file)) return cache.get(file).exports;
-    const module = { exports: {} }; cache.set(file, module);
+    const loadedModule = { exports: {} }; cache.set(file, loadedModule);
     const compiled = ts.transpileModule(readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
     const localRequire = id => {
       if (id === '@/lib/runtime-env') return { env };
@@ -65,8 +65,8 @@ function fixture(options = {}) {
       return require(id);
     };
     const run = vm.runInNewContext(`(function(require,module,exports){${compiled}\n})`, { Request, Response, Headers, URL, TextEncoder, TextDecoder, Uint8Array, crypto, atob, btoa, AbortSignal, fetch: providerFetch });
-    run(localRequire, module, module.exports);
-    return module.exports;
+    run(localRequire, loadedModule, loadedModule.exports);
+    return loadedModule.exports;
   };
   const request = (data = valid, overrides = {}) => new Request('https://studio.example/api/inquiry', {
     method: 'POST', headers: { origin: 'https://studio.example', 'content-type': 'application/json',

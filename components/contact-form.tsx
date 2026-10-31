@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState, useRef, type FormEvent } from "react";
+import { useEffect, useState, useRef, useSyncExternalStore, type FormEvent } from "react";
+import Link from "next/link";
 import { parsePhoneNumberFromString, type CountryCode } from "libphonenumber-js/min";
 import { countries } from "@/lib/countries";
 import { inquirySchema } from "@/lib/inquiry-schema";
@@ -13,13 +14,26 @@ type Draft = ReturnType<typeof projectEmail>;
 const countryOptions = countries.map(item => <option key={item.code} value={item.code}>{item.name}</option>);
 const callingCodeOptions = countries.map(item => <option key={item.code} value={item.code}>+{item.callingCode} {item.code}</option>);
 
+function subscribeToLocation(listener: () => void) {
+  window.addEventListener("popstate", listener);
+  return () => window.removeEventListener("popstate", listener);
+}
+
+function requestedServiceFromLocation() {
+  const requestedService = new URLSearchParams(window.location.search).get("service");
+  return serviceCatalog.find(item => item.title === requestedService)?.title ?? "";
+}
+
+// Static HTML and the first hydration render share the same empty snapshot.
+function serverSelectedService() { return ""; }
+
 export function ContactForm() {
   const [delivery, setDelivery] = useState<Delivery>({ emailReady: false });
   const [draft, setDraft] = useState<Draft | null>(null);
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [selectedService, setSelectedService] = useState("");
+  const selectedService = useSyncExternalStore(subscribeToLocation, requestedServiceFromLocation, serverSelectedService);
   const [notice, setNotice] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [country, setCountry] = useState("");
@@ -34,8 +48,6 @@ export function ContactForm() {
   useEffect(() => {
     alive.current = true;
     requestId.current = createRequestId();
-    const requestedService = new URLSearchParams(location.search).get("service");
-    setSelectedService(serviceCatalog.find(item => item.title === requestedService)?.title ?? "");
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 6000);
     fetch("/api/inquiry", { cache: "no-store", signal: controller.signal })
@@ -113,7 +125,7 @@ export function ContactForm() {
       <p>{success ? "Our email service has accepted your inquiry for processing. We’ll review your idea and continue the conversation by email." : "Your project email is ready. Review it in your email app and press Send. We’d love to hear what you have in mind."}</p>
       {notice && <p className="inquiry-result-notice">{notice}</p>}
       {draft && <div className="inquiry-result-actions"><a className="button button-primary" href={draft.mailto}>Open email app <Arrow /></a><a className="inquiry-gmail-link" href={draft.gmail} target="_blank" rel="noopener noreferrer">Open in Gmail <Arrow /></a></div>}
-      {success && <a className="text-link" href="/work">Explore our work <Arrow /></a>}
+      {success && <Link className="text-link" href="/work">Explore our work <Arrow /></Link>}
       {!success && <span className="inquiry-result-recipient">To {EMAIL}</span>}
     </div>}
     {!success && <form onSubmit={submit} noValidate aria-busy={sending}>
