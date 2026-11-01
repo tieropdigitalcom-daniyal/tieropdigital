@@ -139,12 +139,12 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "chatgpt-gemini-services", title: "ChatGPT & Gemini access", category: "AI & automation", icon: "spark",
-    description: "ChatGPT for PKR 1,000 for one month and Gemini for PKR 900 for 18 months on your own email. Contact Tierop Digital for package details and activation.",
+    description: "ChatGPT single-user access for PKR 1,000 for one month. Gemini for PKR 900 for 18 months. Both on your own email; contact Tierop Digital for activation details.",
     headline: "Your AI tools. On your own email.",
-    introduction: "Get in touch with Tierop Digital for ChatGPT and Gemini access packages on your own email. Choose the package that suits your work, confirm the included plan and availability with our team, and receive guidance on the activation process. The available offers and durations are shown below.",
+    introduction: "Get in touch with Tierop Digital for ChatGPT and Gemini access packages on your own email. Choose the package that suits your work, confirm the included plan and availability with our team, and receive guidance on the activation process. The prices and durations are shown on this page.",
     keywords: ["ChatGPT Pakistan price", "ChatGPT monthly access", "Gemini 18 month package", "Gemini own email Pakistan"],
     deliverables: [
-      { title: "ChatGPT · one month", description: "PKR 1,000 for one month. Contact us to confirm the included ChatGPT plan, features and activation arrangements before placing your order." },
+      { title: "ChatGPT · single user · one month", description: "Personal access for one user. PKR 1,000 for one month. Contact us to confirm the included ChatGPT plan, features and activation arrangements before placing your order." },
       { title: "Gemini · 18 months", description: "PKR 900 for 18 months on your own email. Our team will confirm the available Gemini plan and activation requirements for your email." },
       { title: "Your email, clearly agreed", description: "We confirm the email to be used, the selected package and its duration before activation. Keep your package confirmation for any follow-up support." },
       { title: "A person to contact", description: "Ask our team about your package through WhatsApp or email. If your business needs a custom assistant or an automated workflow, we can scope that as a separate development project." },
@@ -221,7 +221,7 @@ export const servicePages: ServicePage[] = [
 ];
 
 export const aiAccessPackages = [
-  { name: "ChatGPT", price: 1000, months: 1, duration: "1 month", label: "Your everyday AI companion" },
+  { name: "ChatGPT", price: 1000, months: 1, duration: "1 month", label: "PERSONAL AI / SINGLE USER" },
   { name: "Gemini", price: 900, months: 18, duration: "18 months", label: "More possibilities, on your email" },
 ] as const;
 

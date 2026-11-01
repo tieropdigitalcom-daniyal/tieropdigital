@@ -117,7 +117,7 @@ export function ContactForm() {
   return <div className={`contact-form-panel depth-panel${success ? " has-result" : ""}`}>
     <div className="form-heading"><span className="eyebrow"><span className="status-dot" /> A GOOD IDEA STARTS HERE</span><span className="form-heading-mark" aria-hidden="true">↗</span></div>
     <h2>Let’s start something<span>.</span></h2>
-    <p className="form-intro">A little about you. A little about your idea.<br />The beginning of something different.</p>
+    <p className="form-intro">Your goals. Your timeline. Your next idea.<br />Give us a starting point and we’ll take it from there.</p>
     {selectedService && <p className="selected-service">Your project / <strong>{selectedService}</strong></p>}
     {(draft || success || notice) && <div ref={result} className={`inquiry-result${success ? " is-accepted" : ""}`} role="status" aria-live="polite" aria-atomic="true" tabIndex={-1}>
       <span className="inquiry-result-icon" aria-hidden="true">{success ? "✓" : "↗"}</span>

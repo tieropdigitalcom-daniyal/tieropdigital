@@ -6,6 +6,7 @@ import "./editorial.css";
 import "./portfolio.css";
 import "./refinements.css";
 import "./expansion.css";
+import "./polish.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Effects } from "@/components/effects";
@@ -14,12 +15,16 @@ import { EMAIL, SITE_URL } from "@/lib/content";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "TIEROP DIGITAL — Beyond Ordinary", template: "%s | TIEROP DIGITAL" },
-  description: "Web applications, Shopify, Webflow, full-stack development, AI automation, graphic design and video. TIEROP DIGITAL brings your ideas to life.",
+  description: "Distinctive websites, Shopify stores, custom web apps, AI automation, branding and video. Tierop Digital connects design and technology around your business.",
   openGraph: { title: "TIEROP DIGITAL — Beyond Ordinary", description: "Thoughtful design. Distinctive digital experiences.", type: "website", url: SITE_URL, siteName: "TIEROP DIGITAL", images: [{ url: "/assets/hero-1536.webp", width: 1536, height: 1024, alt: "TIEROP DIGITAL cinematic chrome portrait" }] },
   twitter: { card: "summary_large_image", title: "TIEROP DIGITAL — Beyond Ordinary", description: "Thoughtful design. Distinctive digital experiences.", images: ["/assets/hero-1536.webp"] },
   icons: {
-    icon: "/assets/tierop-logo-96.png",
-    shortcut: "/assets/tierop-logo-96.png",
+    icon: [
+      { url: "/favicon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
   },
 };
 
@@ -30,8 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head><link rel="preload" href="/assets/fonts/sans-regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
-      <body id="top"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "TIEROP DIGITAL", url: SITE_URL, email: EMAIL, telephone: "+923127204408", logo: `${SITE_URL}/assets/tierop-logo-384.webp`, sameAs: ["https://www.instagram.com/tieropdigital/"] }) }} /><Header />{children}<Footer /><Effects /></body>
+      <head><link rel="preload" href="/assets/fonts/sans-regular-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
+      <body id="top"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [
+        { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "TIEROP DIGITAL", url: SITE_URL, email: EMAIL, telephone: "+923127204408", logo: `${SITE_URL}/assets/tierop-logo-384.webp`, sameAs: ["https://www.instagram.com/tieropdigital/"] },
+        { "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: "Tierop Digital", alternateName: "TIEROP DIGITAL", url: SITE_URL, publisher: { "@id": `${SITE_URL}/#organization` } },
+      ] }) }} /><Header />{children}<Footer /><Effects /></body>
     </html>
   );
 }

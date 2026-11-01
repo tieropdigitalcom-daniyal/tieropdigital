@@ -36,10 +36,19 @@ The production server uses port 3000. Production builds use webpack, matching th
 - `app/expansion.css`: new layouts and focused header/flower refinements.
 - `public/assets/team`: optimized transparent portraits on a shared CSS backdrop.
 
-ChatGPT is PKR 1,000 for one month. Gemini is PKR 900 for 18 months. Access is offered on the customer's own email; plan details are confirmed with Tierop Digital. Offers appear inside services and the related guide, not on the homepage.
+ChatGPT single-user personal access is PKR 1,000 for one month. Gemini is PKR 900 for 18 months. Access is offered on the customer's own email; plan details are confirmed with Tierop Digital. Offers appear inside services and the related guide, not on the homepage.
 
 ## Hosting
 
 The existing deployment is GitHub to Hostinger using `npm run build`, Node 22 and `.next`. See `UPDATE-GUIDE.md`. Retain the production environment variables. The historical `.openai/hosting.json` is preserved; its Sites project was inaccessible during this update.
 
 The inquiry and delivery webhook features retain their configuration and security behavior. See `SECURITY-FIX.md` and the existing setup notes for email requirements.
+
+## November performance and navigation update
+
+- All seven phone-menu links use the same indexed entrance sequence, including Insights and Let’s talk.
+- A compact Offers link opens the existing package section; prices stay inside the access service and related article.
+- Nine distinct homepage services replace overlapping technology entries.
+- The original hero has responsive AVIF sources with WebP fallbacks. The original font outlines are retained in smaller Latin WOFF2 files.
+- The inquiry form loads near its section, and the flower image loads lazily. Existing high-five, flower, hover and reduced-motion behavior is retained.
+- Root PNG/ICO favicons use the original TD logo mark; WebSite structured data supplies the preferred site name. Google appearance depends on recrawling.

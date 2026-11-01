@@ -7,6 +7,8 @@ const entrances = [
   ".project-card", ".studio-value", ".studio-editorial > *",
   ".contact-aside", ".contact-form-panel", ".project-callout", ".project-summary > *",
   ".project-next", ".legal-body > h2", ".contact-steps > div",
+  ".article-card", ".team-card", ".deliverable-card", ".related-service", ".access-card",
+  ".service-story > div", ".service-fit > div", ".article-body > section",
 ].join(",");
 
 /** One-shot compositor entrances. Scrolling and hovering need no JS render loop. */
@@ -24,7 +26,7 @@ export function Effects() {
         if (reduced.matches || saveData) continue;
         const element = entry.target as HTMLElement;
         const siblings = element.parentElement;
-        const index = siblings?.matches(".studio-values,.process-grid,.website-grid")
+        const index = siblings?.matches(".studio-values,.process-grid,.website-grid,.article-grid,.team-grid,.deliverable-grid,.related-service-grid,.access-grid")
           ? Array.prototype.indexOf.call(siblings.children, element) : 0;
         const animation = element.animate([
           { opacity: 0, translate: "0 18px" },
@@ -40,8 +42,11 @@ export function Effects() {
       observer.observe(element);
     };
     const scan = (root: Element) => {
-      if (root.matches(entrances)) observe(root);
-      root.querySelectorAll(entrances).forEach(observe);
+      // A parent entrance already moves its children; avoid stacking two timelines.
+      if (root.matches(entrances) && !root.parentElement?.closest(entrances)) observe(root);
+      root.querySelectorAll(entrances).forEach(element => {
+        if (!element.parentElement?.closest(entrances)) observe(element);
+      });
     };
     // Observe just newly mounted subtrees (filtered projects / the lazy inquiry).
     const mutation = new MutationObserver(records => {

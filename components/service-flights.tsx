@@ -45,13 +45,13 @@ export function ServiceFlights({ introduction = false, filters = false, detailed
     {introduction && <div className="service-flight-intro">
       <div className="section-label"><span className="eyebrow">01 / OUR EXPERTISE</span><span className="mono">CREATIVITY, WITH PURPOSE.</span></div>
       <h2 data-flight="left">WHAT WE DO<span>.</span></h2>
-      <p className="service-flight-statement"><span data-flight="right">We connect <span className="type-outline">design</span>, technology</span><span data-flight="left">and <span className="type-outline">creative thinking</span> to bring</span><strong data-flight="right">your next idea to life.</strong></p>
+      <p className="service-flight-statement"><span data-flight="right">Distinctive <span className="type-outline">websites</span>. Smarter systems.</span><span data-flight="left">Brand, video and <span className="type-outline">AI</span>, built around</span><strong data-flight="right">what your business needs next.</strong></p>
     </div>}
     {filters && <div className="flight-filterbar"><div className="catalog-filters" role="group" aria-label="Filter services">{serviceCategories.map(item => <button key={item} className="filter-button" aria-pressed={category === item} onClick={() => setCategory(item)}>{item}{item === "All services" && <span>{items.length}</span>}</button>)}</div><span className="catalog-count mono" role="status" aria-live="polite">{String(visible.length).padStart(2, "0")} SERVICES</span></div>}
     <div className="service-flight-grid">{visible.map((service, index) => <article className="service-flight-entry" data-flight={index % 2 ? "right" : "left"} key={service.title}>
       <span className="flight-service-icon"><ServiceIcon name={service.icon} /><span className="mono">{String(items.indexOf(service) + 1).padStart(2, "0")}</span></span>
       <div className="flight-service-copy"><span className="eyebrow flight-service-category">{service.category}</span><h3><Link prefetch={false} href={`/services/${service.slug}`}>{service.title}<Arrow /></Link></h3>{detailed && <p>{service.description}</p>}</div>
     </article>)}</div>
-    {introduction && <div className="flight-bottom"><p>One creative partner. Every possibility.</p><Link prefetch={false} href="/services" className="text-link">Explore our expertise <Arrow /></Link></div>}
+    {introduction && <div className="flight-bottom"><p>One team. Connected expertise.</p><Link prefetch={false} href="/services" className="text-link">Explore our services <Arrow /></Link></div>}
   </div>;
 }

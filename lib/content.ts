@@ -23,17 +23,15 @@ export const services = [
 export const serviceCategories = ["All services", "Development", "AI & automation", "Creative", "Growth"] as const;
 export type ServiceCategory = typeof serviceCategories[number];
 export const serviceCatalog = [
-  { title: "Web applications", category: "Development", icon: "app", description: "Custom dashboards, portals and digital products that turn your idea into an intuitive, responsive experience.", tags: ["Custom web apps", "UI & UX", "Responsive"] },
-  { title: "Shopify", category: "Development", icon: "shop", description: "Brand-led online stores, custom themes and thoughtful product journeys, from first click to checkout.", tags: ["E-commerce", "Custom themes", "Store setup"] },
-  { title: "Webflow", category: "Development", icon: "web", description: "Distinctive marketing websites with flexible CMS content, refined interactions and room for your brand to grow.", tags: ["Webflow CMS", "Landing pages", "Interactions"] },
-  { title: "Full-stack development", category: "Development", icon: "code", description: "Your interface, business logic and data, built together as one cohesive product with dependable foundations.", tags: ["Frontend", "Backend", "API integration"] },
-  { title: "MERN stack", category: "Development", icon: "layers", description: "Complete applications using MongoDB, Express, React and Node.js, shaped around your product and users.", tags: ["MongoDB", "Express", "React", "Node.js"] },
-  { title: "Supabase web apps", category: "Development", icon: "database", description: "Launch connected products with a PostgreSQL database, authentication, storage and real-time experiences.", tags: ["Supabase", "Authentication", "Real-time data"] },
-  { title: "AI automation", category: "AI & automation", icon: "automation", description: "Practical AI assistants and connected workflows that reduce repetitive tasks and keep your business moving.", tags: ["AI workflows", "Integrations", "Assistants"] },
-  { title: "Graphic design", category: "Creative", icon: "design", description: "Visual identities, social graphics and marketing assets that give your brand a consistent, distinctive voice.", tags: ["Brand identity", "Social media", "Marketing design"] },
-  { title: "Video editing", category: "Creative", icon: "video", description: "Well-paced edits, clear storytelling and considered finishing for your brand, campaigns and social channels.", tags: ["Reels & shorts", "Brand films", "Post-production"] },
-  { title: "AI videos", category: "Creative", icon: "spark", description: "Bring fresh visual concepts to life with AI-generated video, creative direction and a polished final edit.", tags: ["AI-generated video", "Concepts", "Social content"] },
-  { title: "Upwork optimization", category: "Growth", icon: "growth", description: "A clearer professional profile, stronger portfolio presentation and proposal guidance that express what you offer.", tags: ["Profile review", "Portfolio", "Proposal strategy"] },
+  { title: "Websites & Webflow", category: "Development", icon: "web", description: "Business websites and editable Webflow sites that make your offer clear and your next inquiry easy.", tags: ["Web design", "Webflow CMS", "Landing pages"] },
+  { title: "Shopify stores", category: "Development", icon: "shop", description: "Store design, Liquid customization and product pages built around how your customers shop.", tags: ["Shopify", "Theme customization", "E-commerce"] },
+  { title: "Custom web apps", category: "Development", icon: "app", description: "Dashboards, portals and business tools with connected interfaces, APIs and data.", tags: ["Full-stack", "MERN", "Supabase"] },
+  { title: "AI automation", category: "AI & automation", icon: "automation", description: "Connected workflows that handle repeat tasks and keep your team focused on the work that needs them.", tags: ["Workflows", "Integrations", "Business automation"] },
+  { title: "AI chatbots", category: "AI & automation", icon: "chat", description: "Customer support assistants grounded in your business knowledge, with a clear handoff to your team.", tags: ["Support", "Knowledge bases", "Human handoff"] },
+  { title: "LLM & RAG systems", category: "AI & automation", icon: "database", description: "AI tools that retrieve your documents and connect approved knowledge with useful business workflows.", tags: ["LLMs", "Retrieval", "Business knowledge"] },
+  { title: "Brand & graphic design", category: "Creative", icon: "design", description: "Brand identities, campaign graphics and social content with a consistent visual direction.", tags: ["Brand identity", "Marketing design", "Social content"] },
+  { title: "Video & AI content", category: "Creative", icon: "video", description: "Sharp edits, motion and AI video concepts for campaigns, brands and social channels.", tags: ["Video editing", "AI video", "Reels & shorts"] },
+  { title: "SEO & digital growth", category: "Growth", icon: "growth", description: "Technical SEO, clearer service content and stronger Upwork profiles that help people find and understand your work.", tags: ["Technical SEO", "Content", "Upwork optimization"] },
 ] as const;
 export const process = [
   { title: "Understand", description: "Start with the right questions. Your business, your audience and what the experience needs to achieve." },

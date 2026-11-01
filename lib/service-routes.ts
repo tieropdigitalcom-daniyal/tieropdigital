@@ -1,8 +1,7 @@
 export const homepageServiceRoutes: Record<string, string> = {
-  "Web applications": "web-application-development", "Shopify": "shopify-development",
-  "Webflow": "website-development", "Full-stack development": "web-application-development",
-  "MERN stack": "web-application-development", "Supabase web apps": "web-application-development",
-  "AI automation": "ai-automation", "Graphic design": "graphic-design-branding",
-  "Video editing": "video-editing-ai-video", "AI videos": "video-editing-ai-video",
-  "Upwork optimization": "seo-growth-services",
+  "Websites & Webflow": "website-development", "Shopify stores": "shopify-development",
+  "Custom web apps": "web-application-development", "AI automation": "ai-automation",
+  "AI chatbots": "ai-chatbot-development", "LLM & RAG systems": "llm-rag-development",
+  "Brand & graphic design": "graphic-design-branding", "Video & AI content": "video-editing-ai-video",
+  "SEO & digital growth": "seo-growth-services",
 };

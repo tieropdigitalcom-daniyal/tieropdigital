@@ -1,3 +1,19 @@
+# Validation — 1 November 2026
+
+- `npm test`: all 39 existing content, inquiry, email and security tests passed.
+- `npm run typecheck` passed. `npm run build` produced 38 outputs, including the retained API endpoints.
+- Rendered HTML review covered 36 documents, 1,348 internal links/anchors, 179 image references and 79 valid JSON-LD blocks; no broken references or duplicate IDs were found. Each content page retained one H1.
+- Privacy and Terms source copy is byte-identical to the supplied archive. The five pictured portfolio projects, separate Team page, original logo treatment and existing artwork remain.
+- Browser review at 360px and 390px confirmed the seven-link phone menu, reopening, route navigation, closing and restored page scrolling. Menu entrance delays run from 0 to 210ms in 35ms steps; Insights and Let’s talk use the same animation as the earlier links.
+- Additional layout review at 760px, 820px, 1024px and the normal desktop viewport found no horizontal document overflow or overlapping header controls on the reviewed pages.
+- The Offers link reaches the package anchor. ChatGPT displays single-user personal access, PKR 1,000, one month and the customer's own email. Gemini retains PKR 900 for 18 months.
+- Hero image transfer size changed from 49,234 to 25,779 bytes on phones and from 157,172 to 77,834 bytes on desktop. Both retain WebP fallbacks.
+- Font transfer size changed from 107,300 to 45,828 bytes combined, retaining the original glyph outlines for the English site.
+- Baseline public PageSpeed report: mobile Performance 93, desktop Performance 100; Accessibility, Best Practices and SEO 100 on both. This is a baseline, not a post-change claim. Report: https://pagespeed.web.dev/analysis/https-tieropdigital-com/2gfx1v1y41?form_factor=mobile
+- Public-host asset responses currently lack Cache-Control despite the existing Next.js rule. This is observed Hostinger delivery behavior; no broad page-caching rules or hosting settings were changed.
+
+## Previous update
+
 # Validation — 31 October 2026
 
 - `npm ci` completed using the existing lockfile. No dependencies were added.
