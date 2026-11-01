@@ -50,5 +50,5 @@ The inquiry and delivery webhook features retain their configuration and securit
 - A compact Offers link opens the existing package section; prices stay inside the access service and related article.
 - Nine distinct homepage services replace overlapping technology entries.
 - The original hero has responsive AVIF sources with WebP fallbacks. The original font outlines are retained in smaller Latin WOFF2 files.
-- The inquiry form loads near its section, and the flower image loads lazily. Existing high-five, flower, hover and reduced-motion behavior is retained.
+- The inquiry form loads near its section with its full responsive height reserved, and the flower image loads lazily. Existing high-five, flower, hover and reduced-motion behavior is retained.
 - Root PNG/ICO favicons use the original TD logo mark; WebSite structured data supplies the preferred site name. Google appearance depends on recrawling.

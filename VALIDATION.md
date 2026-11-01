@@ -12,6 +12,10 @@
 - Baseline public PageSpeed report: mobile Performance 93, desktop Performance 100; Accessibility, Best Practices and SEO 100 on both. This is a baseline, not a post-change claim. Report: https://pagespeed.web.dev/analysis/https-tieropdigital-com/2gfx1v1y41?form_factor=mobile
 - Public-host asset responses currently lack Cache-Control despite the existing Next.js rule. This is observed Hostinger delivery behavior; no broad page-caching rules or hosting settings were changed.
 
+## Deferred form layout follow-up
+
+The first public post-change test measured mobile Performance 95, LCP 2.2s, TBT 10ms and CLS 0. The desktop run exposed a deferred-form shift: the inquiry panel grew from a 1,050px placeholder to 1,233px and displaced the footer. The form now reserves its full responsive footprint before loading (1,280px desktop, 1,400px small laptop, 1,390px wide phone and 1,480px small phone). This changes reserved space only; animation styles and the inquiry workflow are unchanged. Desktop layout is checked again after deployment.
+
 ## Previous update
 
 # Validation — 31 October 2026
