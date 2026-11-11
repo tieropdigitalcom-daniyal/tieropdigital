@@ -9,7 +9,6 @@ export const projects: Project[] = [
   { slug: "r-racer", name: "R Racer Ltd", label: "AUTOMOTIVE", url: "https://rracerltd.com", image: "r-racer", color: "#ed453a", overview: "An automotive website introducing R Racer Ltd and its vehicle buying and rental experiences." },
   { slug: "pearl-lemon-properties", name: "Pearl Lemon Properties", label: "PROPERTY", url: "https://pearllemonproperties.com/", image: "pearl-lemon", color: "#f2cf13", overview: "A property sourcing website presenting investment services and a direct inquiry experience." },
   { slug: "solds", name: "Solds", label: "PROPERTY", url: "https://solds.co.uk/", image: "solds", color: "#f33b3c", overview: "A property website presenting a house-selling service in Scotland, with clear paths to request an offer." },
-  { slug: "thoes", name: "THOES", label: "PROPERTY", url: "https://thoes.webflow.io/", image: "thoes", color: "#ff734b", overview: "A Dutch-language website introducing THOES and its property selling and insurance journeys." },
   { slug: "rahat-medical", name: "Rahat Abdul Ghaffar Medical Complex", label: "HEALTHCARE", url: "https://rahatabdulghaffarmc.com/", image: "rahat-medical", color: "#ff8b23", overview: "A hospital website introducing the medical complex, its departments and appointment information." },
 ];
 export const services = [
